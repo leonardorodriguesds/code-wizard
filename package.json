@@ -1,0 +1,69 @@
+{
+  "name": "evo-code-wizard",
+  "displayName": "evo-code-wizard",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onView:evoView",
+    "onCommand:evo-code-wizard.addComments"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "viewsContainers": {
+        "activitybar": [{
+            "id": "evoViewContainer",
+            "title": "Evo Code Wizard",
+            "icon": "images/icon.svg"
+        }]
+    },
+    "views": {
+        "evoViewContainer": [{
+            "id": "evoView",
+            "name": "Evo Code Wizard"
+        }]
+    },
+    "commands": [
+      {
+        "command": "evo-code-wizard.insertCrudParams",
+        "title": "Inserir Parâmetros CRUD"
+      },
+      {
+        "command": "evo-code-wizard.createAngularComponent",
+        "title": "Criar Componente Angular",
+        "icon": "$(play)"
+      }
+    ],
+    "menus": {
+        "view/title": [{
+            "when": "view == evoView",
+            "command": "evo-code-wizard.insertCrudParams",
+            "group": "navigation"
+        }],
+        "view/item/context": [{
+            "when": "view == evoView",
+            "command": "evo-code-wizard.insertCrudParams",
+            "group": "0_evo"
+        }]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.86.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}
